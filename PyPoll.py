@@ -10,11 +10,14 @@ file_to_save = os.path.join("Analysis/election_analysis.txt")
 
 # Initialize variables
 total_votes = 0
+
 candidate_options = []
 candidate_votes = {}
+
 counties = []
 county_votes = {}
 county_results = []
+
 winning_candidate = ""
 winning_count = 0
 winning_percentage = 0
@@ -29,7 +32,7 @@ with open(file_to_load) as election_data:
     for row in file_reader:
         total_votes += 1
         
-        # Get the candidate name from each row.
+        # Get the candidate and county names from each row.
         candidate_name = row[2]
         county_name = row[1]
         
@@ -46,10 +49,13 @@ with open(file_to_load) as election_data:
         candidate_votes[candidate_name] += 1
 
         if county_name not in counties:
-            # Add the candidate name to the candidate list.
+            # Add the county name to the county list.
             counties.append(county_name)
-            county_votes[county_name] = 0
             
+            # And begin tracking that county voter count.
+            county_votes[county_name] = 0
+        
+        # Add a vote to that county count.    
         county_votes[county_name] += 1
     
     for county in county_votes:
@@ -73,6 +79,8 @@ with open(file_to_save, "w") as txt_file:
         f"Total Votes: {total_votes:,}\n"
         f"-------------------------\n")
     print(election_results, end="")    
+    
+    # Print county with the most turnout for the terminal
     for result in county_results:
         print(result)
     print("-------------------------\nLargest County Turnout:",
@@ -81,6 +89,7 @@ with open(file_to_save, "w") as txt_file:
     # Save the final vote count to the text file.
     txt_file.write(election_results)
     
+    # Write county info onto the text file
     for result in county_results:
        txt_file.write(result)
     
@@ -88,6 +97,7 @@ with open(file_to_save, "w") as txt_file:
     txt_file.write(max_key)               
     txt_file.write("\n-------------------------\n")
     
+    # Print Candadate info for terminal
     for candidate in candidate_votes:
         # Retrieve vote count and percentage.
         votes = candidate_votes[candidate]
