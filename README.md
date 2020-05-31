@@ -10,7 +10,7 @@ The election board of Coloardo wants to conduct an election audit of a recent lo
 ---
 # Resources
 - Data: election_results.csv
-- Software: Python 3.8, Notepad + +
+- Software: Python 3.7, Spyder 4.1.2
 ---
 # Summary
 Analysis Displayed Such
@@ -20,3 +20,11 @@ Analysis Displayed Such
   - Candidate "x"; % of votes; count of votes
 - Winner Info
   - Candidate; % recieved; count of votes
+
+# Challenge Assignment
+---
+Extend code funtionality in order to output additional details of the election results
+1) Create a list for the counties
+2) Create a dictionary where the county is the key and the votes cast for each county in the election are the values
+3) Loop through and print largest county turnout
+4) Display county participation by volume and percentage
